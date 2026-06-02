@@ -6,39 +6,126 @@
 
 html, body {
     height: 100%;
-    overflow: hidden; /* sem scroll na página toda */
+    overflow: hidden;
 }
 
 body {
     display: flex;
     flex-direction: column;
     font-family: sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    
 }
 
-/* ── HEADER ───────────────────────────────────────── */
+/* ── MODO NOTURNO ──────────────────────────────────────────*/
+body.noturno {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.noturno header {
+    background-color: #16213e;
+}
+
+body.noturno footer {
+    background-color: #0f3460;
+}
+
+body.noturno ul {
+    background-color: #16213e;
+}
+
+body.noturno li a {
+    background-color: #e2b714;
+    color: #1a1a2e;
+}
+
+body.noturno li a:hover {
+    background-color: #c9a010;
+}
+
+body.noturno li a.ativo {
+    background-color: #9a7a0a;
+}
+
+body.noturno .card-desafio {
+    background-color: #16213e;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+body.noturno .campo label {
+    color: #aaaaaa;
+}
+
+body.noturno .campo input,
+body.noturno .campo select {
+    background-color: #0f3460;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+body.noturno .resultado {
+    background-color: #0f3460;
+    border-left-color: #e2b714;
+    color: #e0e0e0;
+}
+
+body.noturno #btn-modo {
+    background-color: #e2b714;
+    color: #1a1a2e;
+}
+
+/* ── HEADER ─────────────────────────────────────────────── */
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 16px 24px;
     background-color: #888888;
     color: white;
-    flex-shrink: 0; /* não encolhe quando o main cresce */
+    flex-shrink: 0;
+    
 }
 
-/* ── MAIN ─────────────────────────────────────────── */
+/* Botão modo noturno — fica no canto direito do header */
+#btn-modo {
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+   
+}
+
+#btn-modo:hover {
+    background-color: #555;
+}
+
+/* ── MAIN ────────────────────────────────────────────────── */
 main {
     display: flex;
     flex-direction: row;
-    flex: 1;          /* ocupa o espaço entre header e footer */
-    overflow: hidden; /* impede scroll lateral */
+    flex: 1;
+    overflow: hidden;
 }
 
-/* ── BARRA LATERAL (ul dentro da primeira section) ── */
 main section:first-child {
     flex-shrink: 0;
 }
 
+main section:last-child {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow: auto;
+}
+
+/* ── BARRA LATERAL ──────────────────────────────────────── */
 ul {
     list-style-type: none;
     display: flex;
@@ -47,9 +134,9 @@ ul {
     padding: 20px;
     height: 100%;
     background-color: #b8b8b8;
+    ;
 }
 
-/* Cada botão do menu */
 li a {
     display: flex;
     justify-content: center;
@@ -64,30 +151,19 @@ li a {
     font-size: 14px;
     text-align: center;
     padding: 8px;
-    transition: background-color 0.2s;
+ 
 }
 
 li a:hover {
     background-color: #c4b82e;
 }
 
-/* Item ativo (página atual) */
 li a.ativo {
     background-color: #9a9020;
     outline: 2px solid white;
 }
 
-/* ── ÁREA DE CONTEÚDO (segunda section) ────────────── */
-main section:last-child {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    overflow: auto; /* só essa área rola se precisar */
-}
-
-/* Imagem da página inicial */
+/* ── IMAGEM p o Index────────────────────────────────── */
 img {
     max-width: 100%;
     max-height: 100%;
@@ -96,7 +172,7 @@ img {
     border-radius: 8px;
 }
 
-/* ── CARD DOS DESAFIOS ──────────────────────────────── */
+/* ── CARD DOS DESAFIOS ──────────────────────────────────── */
 .card-desafio {
     background: #f5f5f5;
     border-radius: 12px;
@@ -104,15 +180,14 @@ img {
     width: 100%;
     max-width: 480px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+
 }
 
 .card-desafio h2 {
     margin-bottom: 24px;
-    color: #444;
     font-size: 20px;
 }
 
-/* Grupo de campo: label + input/select lado a lado ou empilhados */
 .campo {
     display: flex;
     flex-direction: column;
@@ -124,6 +199,7 @@ img {
     font-size: 14px;
     color: #666;
     font-weight: bold;
+
 }
 
 .campo input,
@@ -133,9 +209,9 @@ img {
     border-radius: 6px;
     font-size: 15px;
     width: 100%;
+
 }
 
-/* Botão de calcular */
 .btn-calcular {
     width: 100%;
     padding: 12px;
@@ -147,14 +223,13 @@ img {
     font-weight: bold;
     cursor: pointer;
     margin-top: 8px;
-    transition: background-color 0.2s;
+    
 }
 
 .btn-calcular:hover {
     background-color: #c4b82e;
 }
 
-/* Resultado */
 .resultado {
     margin-top: 20px;
     padding: 14px;
@@ -164,9 +239,10 @@ img {
     font-size: 16px;
     color: #333;
     min-height: 48px;
+  
 }
 
-/* ── FOOTER ──────────────────────────────────────── */
+/* ── FOOTERS ─────────────────────────────────────────────── */
 footer {
     display: flex;
     justify-content: center;
@@ -175,4 +251,5 @@ footer {
     background-color: #666666;
     color: white;
     flex-shrink: 0;
+
 }

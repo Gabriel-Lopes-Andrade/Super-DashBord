@@ -98,7 +98,7 @@ function classificarIMC(imc, sexo) {
 function calcularIMC() {
     const peso   = parseFloat(document.querySelector("#peso").value);
     const altura = parseFloat(document.querySelector("#altura").value);
-    // CORREÇÃO: o campo é um <select>, não um radio button
+ 
     const sexo   = document.querySelector("#sexo").value;
 
     const resultado = document.querySelector("#resultado-imc");

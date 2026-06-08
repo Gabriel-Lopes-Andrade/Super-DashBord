@@ -22,20 +22,20 @@ body {
 
 /*  MODO NOTURNO */
 body.noturno {
-    background-color: #1a1a2e;
+    background-color: #161616;
     color: #e0e0e0;
 }
 
 body.noturno header {
-    background-color: #16213e;
+    background-color: #353535;
 }
 
 body.noturno footer {
-    background-color: #0f3460;
+    background-color: #272727;
 }
 
 body.noturno ul {
-    background-color: #16213e;
+    background-color: #2e2e2e;
 }
 
 body.noturno li a {
@@ -52,7 +52,7 @@ body.noturno li a.ativo {
 }
 
 body.noturno .card-desafio {
-    background-color: #16213e;
+    background-color: #111111;
     box-shadow: 0 2px 12px rgba(0,0,0,0.4);
 }
 
@@ -62,20 +62,20 @@ body.noturno .campo label {
 
 body.noturno .campo input,
 body.noturno .campo select {
-    background-color: #0f3460;
+    background-color: #303030;
     border-color: #444;
     color: #e0e0e0;
 }
 
 body.noturno .resultado {
-    background-color: #0f3460;
+    background-color: #444444;
     border-left-color: #e2b714;
     color: #e0e0e0;
 }
 
 body.noturno #btn-modo {
     background-color: #e2b714;
-    color: #1a1a2e;
+    color: #141414;
 }
 
 /* HEADER */

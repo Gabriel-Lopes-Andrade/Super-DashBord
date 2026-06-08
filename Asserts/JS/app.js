@@ -19,106 +19,152 @@
   });
 
   //DESAFIO 1 :P
+ 
+const btnMoeda = document.getElementById('btn-moeda');
 
-  async function getMoney() {
-    const response = await fetch(" https://economia.awesomeapi.com.br/json/last/USD-BRL");
-    const data = await response.json();
-    return data.rates;
-  }
+if (btnMoeda) {
+    btnMoeda.addEventListener('click', async () => {
+        const valor = parseFloat(document.getElementById('valor-moeda').value);
+        const direcao = document.getElementById('direcao-moeda').value;
+        const resultadoDiv = document.getElementById('resultado-moeda');
+
+        // Validação p entrada
+        if (isNaN(valor) || valor <= 0) {
+            resultadoDiv.innerHTML = `<p style="color: red;">Por favor, insira um valor válido.</p>`;
+            return;
+        }
+
+        // Segurando o usuário até chegar n resultado
+        resultadoDiv.innerHTML = `<p>Buscando cotação em tempo real...</p>`;
+
+        try {
+            
+            const resposta = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL');
+            const dados = await resposta.json();
+            
+            
+            const taxaUsdBrl = parseFloat(dados.USDBRL.bid); 
+            let resultado = 0;
+
+            //Localização e formatação do resultado p nós meros mortais
+
+            if (direcao === 'brl-usd') {
+                // Real -> DOla
+                resultado = valor / taxaUsdBrl;
+                resultadoDiv.innerHTML = `
+                    <p><strong>R$ ${valor.toFixed(2)}</strong> equivale a <strong>US$ ${resultado.toFixed(2)}</strong></p>
+                    <p><small>Cotação atual usada: 1 USD = R$ ${taxaUsdBrl.toFixed(2)}</small></p>
+                `;
+            } else if (direcao === 'usd-brl') {
+                //Dola -> REal
+                resultado = valor * taxaUsdBrl;
+                resultadoDiv.innerHTML = `
+                    <p><strong>US$ ${valor.toFixed(2)}</strong> equivale a <strong>R$ ${resultado.toFixed(2)}</strong></p>
+                    <p><small>Cotação atual usada: 1 USD = R$ ${taxaUsdBrl.toFixed(2)}</small></p>
+                `;
+            }
+        } catch (erro) {
+           
+            resultadoDiv.innerHTML = `<p style="color: red;">Erro ao buscar a cotação. Verifique sua conexão e tente novamente.</p>`;
+            console.error('Erro na requisição da API:', erro);
+        }
+    });
+}
+
 
 //DESAFIO 2 :P
 
-const elemento = {
-  form: document.querySelector(".campo"),
-  inputSexo: document.querySelector("#sexo"),
-  inputPeso: document.querySelector("#peso"),
-  inputAltura: document.querySelector("#altura"),
-  btnCalcular: document.querySelector("#btn-imc"),
-  resultado: document.querySelector("#resultado-imc"),
-};
+const btnImc = document.getElementById('btn-imc');
 
-// elemento.form.addEventListener("submit", function (evento) {
-//   evento.preventDefault();
-// });
+if (btnImc) {
+    btnImc.addEventListener('click', () => {
+        const peso = parseFloat(document.getElementById('peso').value);
+        const altura = parseFloat(document.getElementById('altura').value);
+        const resultadoDiv = document.getElementById('resultado-imc');
 
-// elemento.btnCalcular.addEventListener("click", function () {
-//   console.log("Pressionou o botão Calcular...");
-//   calcularIMC();
-// });
+        if (isNaN(peso) || isNaN(altura) || peso <= 0 || altura <= 0) {
+            resultadoDiv.innerHTML = `<p class="erro">Insira valores válidos para peso e altura.</p>`;
+            return;
+        }
 
+        // Cálculo do IMC
+        const imc = peso / (altura * altura);
+        let classificacao = '';
 
-//Função para calcular o IMC
-function calcularIMC(peso,altura,sexo){
-let imc = peso /  altura **2 ;
+        // Classificação OMS
+        if (imc < 18.5) {
+            classificacao = 'Abaixo do peso';
+        } else if (imc >= 18.5 && imc < 24.9) {
+            classificacao = 'Peso normal';
+        } else if (imc >= 25 && imc < 24.9) {
+            classificacao = 'Sobrepeso';
+        } else {
+            classificacao = 'Obesidade';
+        }
 
-return imc;
+        resultadoDiv.innerHTML = `
+            <p>Seu IMC é <strong>${imc.toFixed(2)}</strong></p>
+            <p>Classificação: <strong>${classificacao}</strong></p>
+        `;
+    });
+}
 
+// DESAFIO 3 :p
+
+const btnTemperatura = document.getElementById('btn-temperatura');
+
+if (btnTemperatura) {
+    btnTemperatura.addEventListener('click', () => {
+        const valor = parseFloat(document.getElementById('valor-temperatura').value);
+        const direcao = document.getElementById('direcao-temperatura').value;
+        const resultadoDiv = document.getElementById('resultado-temperatura');
+
+        if (isNaN(valor)) {
+            resultadoDiv.innerHTML = `<p class="erro">Por favor, insira um número válido.</p>`;
+            return;
+        }
+
+        let resultado = 0;
+
+        if (direcao === 'c-f') {
+            // Celsius para Fahrenheit: 
+            resultado = (valor * 9/5) + 32;
+            resultadoDiv.innerHTML = `<p><strong>${valor}°C</strong> é igual a <strong>${resultado.toFixed(1)}°F</strong></p>`;
+        } else if (direcao === 'f-c') {
+            // Fahrenheit para Celsius: 
+            resultado = (valor - 32) * 5/9;
+            resultadoDiv.innerHTML = `<p><strong>${valor}°F</strong> é igual a <strong>${resultado.toFixed(1)}°C</strong></p>`;
+        }
+    });
 }
 
 
-//Função de exemplo de como capturar o rádio selecionado
-function getSexoSelecionado() {
-  document.querySelector("form").addEventListener("submit", function (evento) {
-    evento.preventDefault();
-  });
-  //2. Captura o ENDEREÇO do botão enviar
-  let btnEnviar = document.querySelector("#btn-imc");
+//Desafio 4 :p
+var FATOR_KM_PARA_MPH = 0.621371; // 1 km/h em mph
 
-  //3. Adiciona um ouvinte de evento para o clique do botão
-  btnEnviar.addEventListener("click", (evento) => {
-    //4. Dentro do ouvinte, captura o valor do rádio selecionado
-    let peso = document.querySelector("#peso").value;
-    let altura = document.querySelector("#altura").value;
-    let sexo = document.querySelector('input[name="sexo"]:checked').id;
- 
-    let imc = calcularIMC(peso,altura,sexo);
-    console.log(imc);
-});
+function converterVelocidade(valor, direcao) {
+   // se for km pra mph multiplica, senão divide
+   if (direcao === "km-mph") return valor * FATOR_KM_PARA_MPH;
+   return valor / FATOR_KM_PARA_MPH;
 }
 
-getSexoSelecionado();
+function mostrarResultadoVelocidade() {
+   var valor = parseFloat(document.getElementById("valor-vel").value);
+   var direcao = document.getElementById("direcao-vel").value;
+   var caixaResultado = document.getElementById("resultado-vel");
 
 
+   if (isNaN(valor)) {
+       caixaResultado.textContent = "Digite um número válido.";
+       return;
+   }
+   var convertido = converterVelocidade(valor, direcao);
 
-
-// ─── CALCULADORA DE IMC ────────────────────────────────────────
-
-// Retorna a classificação de IMC conforme tabela OMS
-function classificarIMC(imc, sexo) {
-    // Tabela OMS (os limites são iguais para ambos os sexos na versão padrão)
-    if (imc < 18.5) return { texto: "Abaixo do peso", cor: "#3b82f6" };
-    if (imc < 25)   return { texto: "Peso normal", cor: "#22c55e" };
-    if (imc < 30)   return { texto: "Sobrepeso", cor: "#f59e0b" };
-    if (imc < 35)   return { texto: "Obesidade grau I", cor: "#f97316" };
-    if (imc < 40)   return { texto: "Obesidade grau II", cor: "#ef4444" };
-    return           { texto: "Obesidade grau III", cor: "#7f1d1d" };
+   if (direcao === "km-mph") {
+       caixaResultado.textContent = valor + " km/h = " + convertido.toFixed(2) + " mph";
+   } else {
+       caixaResultado.textContent = valor + " mph = " + convertido.toFixed(2) + " km/h";
+   }
 }
-
-// Calcula e exibe o resultado
-function calcularIMC() {
-    const peso   = parseFloat(document.querySelector("#peso").value);
-    const altura = parseFloat(document.querySelector("#altura").value);
- 
-    const sexo   = document.querySelector("#sexo").value;
-
-    const resultado = document.querySelector("#resultado-imc");
-
-    // Validação básica
-    if (!peso || !altura || peso <= 0 || altura <= 0) {
-        resultado.innerHTML = `<p style="color:#ef4444;"> Preencha peso e altura corretamente.</p>`;
-        return;
-    }
-
-    const imc = peso / altura ** 2;
-    const { texto, cor } = classificarIMC(imc, sexo);
-
-    // Exibe o resultado formatado
-    resultado.innerHTML = `
-        <p>Seu IMC é: <strong style="color:${cor};">${imc.toFixed(2)}</strong></p>
-        <p>Classificação: <strong style="color:${cor};">${texto}</strong></p>
-    `;
-}
-
-// Associa o clique do botão à função (sem submit desnecessário)
-document.querySelector("#btn-imc").addEventListener("click", calcularIMC);
+document.getElementById("btn-vel").addEventListener("click", mostrarResultadoVelocidade);
 

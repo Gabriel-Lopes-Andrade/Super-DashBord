@@ -257,12 +257,33 @@ footer {
     flex-shrink: 0;
 
 }
+/* === Pego da PokeAPI === */
+/* === Adição para ajustar pro Tablet=== */
+@media (max-width: 768px) {
+    html, body {
+        height: auto;
+        overflow: auto;
+    }
 
-@media screen {
-    
+    main {
+        flex-direction: column; 
+        /* MUDEI P COLOCAR PRA CIMA POIS O CELULAR NÃO É COMPRIDO COMO O TABLET PARA CABER TODOS OS CARDS */
+    }
+
+    ul {
+        flex-direction: row; /* Coloca os botões do menu lado a lado */
+        flex-wrap: wrap; 
+        justify-content: center;
+        height: auto;
+        gap: 15px;
+    }
+
+    .card-desafio {
+        padding: 20px;
+        margin: 20px auto;
+         width: 90%; /* TESTE */
+    }
 }
-
-
 .oculto {
     display: none !important;
 }

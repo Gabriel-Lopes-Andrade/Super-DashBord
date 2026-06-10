@@ -164,3 +164,57 @@ if (btnVel) {
     });
 }
 
+// DESAFIO 5
+const btnMassa = document.getElementById('btn-massa');
+if (btnMassa) {
+   btnMassa.addEventListener('click', () => {
+       const valor = parseFloat(document.getElementById('valor-massa').value);
+       const direcao = document.getElementById('direcao-massa').value;
+       const resultadoDiv = document.getElementById('resultado-massa');
+
+
+       if (isNaN(valor)) {
+           resultadoDiv.innerHTML = `<p style="color: red;">Por favor, insira um valor válido.</p>`;
+           return;
+       }
+
+
+       let resultado = 0;
+       if (direcao === 'kg-g') {
+           resultado = valor * 1000;
+           resultadoDiv.innerHTML = `<p><strong>${valor} Kg</strong> é igual a <strong>${resultado} g</strong></p>`;
+       } else if (direcao === 'g-kg') {
+           resultado = valor / 1000;
+           resultadoDiv.innerHTML = `<p><strong>${valor} g</strong> é igual a <strong>${resultado} Kg</strong></p>`;
+       }
+   });
+}
+
+
+// DESAFIO 6
+const btnRegra = document.getElementById('btn-regra');
+if (btnRegra) {
+   btnRegra.addEventListener('click', function() {
+       const a = parseFloat(document.getElementById('valor-a').value);
+       const b = parseFloat(document.getElementById('valor-b').value);
+       const c = parseFloat(document.getElementById('valor-c').value);
+       const divResultado = document.getElementById('resultado-regra');
+
+
+       if (isNaN(a) || isNaN(b) || isNaN(c)) {
+           divResultado.innerHTML = "<p style='color: red;'>Por favor, preencha todos os campos com números.</p>";
+           return;
+       }
+
+
+       if (a === 0) {
+           divResultado.innerHTML = "<p style='color: red;'>O Valor A não pode ser zero na regra de três.</p>";
+           return;
+       }
+
+
+       const x = (b * c) / a;
+       divResultado.innerHTML = `<p>O valor de <strong>X é ${x.toFixed(2)}</strong></p>`;
+   });
+}
+

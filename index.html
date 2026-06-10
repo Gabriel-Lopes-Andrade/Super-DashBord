@@ -10,28 +10,142 @@
 
     <header>
         <h1>Painel de Ferramentas</h1>
-       
         <button id="btn-modo">Modo Noturno</button>
     </header>
 
     <main>
-           <section>
-            <ul>
-                
-                <li><a href="desafio1.html">Conversor de Moedas</a></li>
-                <li><a href="desafio2.html">Cálc IMC</a></li>
-                <li><a href="desafio3.html"> Temperatura</a></li>
-                <li><a href="desafio4.html">Cálc Velocidade</a></li>
-                <li><a href="desafio5.html">Cálc Massa</a></li>
-                <li><a href="desafio6.html">Regra de 3</a></li>
+        <section>
+            <ul id="menu-navegacao">
+                <li><a href="#" data-target="desafio1" class="ativo">Conversor de Moedas</a></li>
+                <li><a href="#" data-target="desafio2">Cálc IMC</a></li>
+                <li><a href="#" data-target="desafio3">Temperatura</a></li>
+                <li><a href="#" data-target="desafio4">Cálc Velocidade</a></li>
+                <li><a href="#" data-target="desafio5">Cálc Massa</a></li>
+                <li><a href="#" data-target="desafio6">Regra de 3</a></li>
             </ul>
         </section>
 
-        <!--Usando card das bombas Hidráulicas & Ladrilhos p modo escuro-->
+        <section id="conteudo-principal">
+            
 
-        
-        <section>
-            <img src="./Asserts/IMG/images.jpg" alt="Dashboard">
+            <!-- Desafio 1 Moedas legais pronto -->
+            <div id="desafio1" class="card-desafio">
+                <h2>Desafio 1 — Conversor de Moedas</h2>
+                <div class="campo">
+                    <label for="valor-moeda">Valor</label>
+                    <input type="number" id="valor-moeda" placeholder="Ex: 100">
+                </div>
+                <div class="campo">
+                    <label for="direcao-moeda">Converter de:</label>
+                    <select id="direcao-moeda">
+                        <option value="brl-usd">BRL -> USD</option>
+                        <option value="usd-brl">USD -> BRL</option>
+                    </select>
+                </div>
+                <button class="btn-calcular" id="btn-moeda">Converter</button>
+                <div class="resultado" id="resultado-moeda"></div>
+            </div>
+
+            <!-- Desafio 2 — Cálculo de IMC pronto-->
+
+            <div id="desafio2" class="card-desafio oculto">
+                <h2>Desafio 2 — Cálculo de IMC</h2>
+                <div class="campo">
+                    <label for="peso">Peso (kg)</label>
+                    <input type="number" id="peso" placeholder="Ex: 70">
+                </div>
+                <div class="campo">
+                    <label for="altura">Altura (m)</label>
+                    <input type="number" id="altura" placeholder="Ex: 1.75">
+                </div>
+                <div class="campo">
+                    <label for="sexo">Sexo</label>
+                    <select id="sexo">
+                        <option value="masculino" id="sexo-masculino">Masculino</option>
+                        <option value="feminino" id="sexo-feminino">Feminino</option>
+                    </select>
+                </div>
+                <button class="btn-calcular" id="btn-imc">Calcular IMC</button>
+                <div class="resultado" id="resultado-imc"></div>
+            </div>
+
+                <!-- Desafio 3 — Cálculo de Temperatura pronto -->
+            <div id="desafio3" class="card-desafio oculto">
+                <h2>Desafio 3 — Cálculo de Temperatura</h2>
+                <div class="campo">
+                    <label for="valor-temperatura">Valor</label>
+                    <input type="number" id="valor-temperatura" placeholder="Ex: 100">
+                </div>
+                <div class="campo">
+                    <label for="direcao-temperatura">Converter de</label>
+                    <select id="direcao-temperatura">
+                        <option value="c-f">Celsius -> Fahrenheit</option>
+                        <option value="f-c">Fahrenheit -> Celsius</option>
+                    </select>
+                </div>
+                <button class="btn-calcular" id="btn-temperatura">Converter</button>
+                <div class="resultado" id="resultado-temperatura"></div>
+            </div>
+
+            <div id="desafio4" class="card-desafio oculto">
+
+                <!-- Desafio 4 — Conversor de Velocidade pronto -->
+                <h2>Desafio 4 — Conversor de Velocidade</h2>
+                <div class="campo">
+                    <label for="valor-vel">Valor</label>
+                    <input type="number" id="valor-vel" placeholder="Ex: 100">
+                </div>
+                <div class="campo">
+                    <label for="direcao-vel">Converter de</label>
+                    <select id="direcao-vel">
+                        <option value="km-mph">km/h -> mph</option>
+                        <option value="mph-km">mph -> km/h</option>
+                    </select>
+                </div>
+                <button class="btn-calcular" id="btn-vel">Converter</button>
+                <div class="resultado" id="resultado-vel"></div>
+            </div>
+
+            <div id="desafio5" class="card-desafio oculto">
+
+                <!-- Desafio 5 — Cálculo de Massa - a fazer -->
+                <h2>Desafio 5 — Cálculo de Massa</h2>
+                <div class="campo">
+                    <label for="valor-massa">Valor</label>
+                    <input type="number" id="valor-massa" placeholder="Ex: 100">
+                </div>
+                <div class="campo">
+                    <label for="direcao-massa">Converter de</label>
+                    <select id="direcao-massa">
+                        <option value="kg-g">Kg → g</option>
+                        <option value="g-kg">g → Kg</option>
+                    </select>
+                </div>
+                <button class="btn-calcular" id="btn-massa">Converter</button>
+                <div class="resultado" id="resultado-massa"></div>
+            </div>
+
+            <div id="desafio6" class="card-desafio oculto">
+
+                <!-- Desafio 6 — Regra de 3 Simples - a fazer -->
+                <h2>Desafio 6 — Regra de 3 Simples</h2>
+                <p>Se <strong>A</strong> está para <strong>B</strong>, assim como <strong>C</strong> está para <strong>X</strong>.</p>
+                <div class="campo">
+                    <label for="valor-a">Valor A</label>
+                    <input type="number" id="valor-a" placeholder="Ex: 50">
+                </div>
+                <div class="campo">
+                    <label for="valor-b">Valor B</label>
+                    <input type="number" id="valor-b" placeholder="Ex: 100">
+                </div>
+                <div class="campo">
+                    <label for="valor-c">Valor C</label>
+                    <input type="number" id="valor-c" placeholder="Ex: 10">
+                </div>
+                <button class="btn-calcular" id="btn-regra">Calcular X</button>
+                <div class="resultado" id="resultado-regra"></div>
+            </div>
+
         </section>
     </main>
 

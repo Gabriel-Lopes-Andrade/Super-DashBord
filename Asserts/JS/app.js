@@ -77,7 +77,7 @@ if (btnMoeda) {
     });
 }
 
-// DESAFIO 2
+// DESAFIO 2 (Modificado com a sua mensagem customizada)
 const btnImc = document.getElementById('btn-imc');
 if (btnImc) {
     btnImc.addEventListener('click', () => {
@@ -85,9 +85,10 @@ if (btnImc) {
         const altura = parseFloat(document.getElementById('altura').value);
         const resultadoDiv = document.getElementById('resultado-imc');
 
+        // Validação: se não for número, ou se for menor ou igual a zero (0, -1, etc)
         if (isNaN(peso) || isNaN(altura) || peso <= 0 || altura <= 0) {
-            resultadoDiv.innerHTML = `<p class="erro" style="color: red;">Insira valores válidos para peso e altura.</p>`;
-            return;
+            resultadoDiv.innerHTML = `<p class="erro" style="color: red;">Por favor, insira valores válidos e maiores que zero (0, -1 e afins não são aceitos).</p>`;
+            return; // Bloqueia o cálculo do IMC
         }
 
         const imc = peso / (altura * altura);
@@ -97,7 +98,7 @@ if (btnImc) {
             classificacao = 'Abaixo do peso';
         } else if (imc >= 18.5 && imc < 24.9) {
             classificacao = 'Peso normal';
-        } else if (imc >= 25 && imc < 29.9) { // Corrigido erro de lógica de classificação da OMS
+        } else if (imc >= 25 && imc < 29.9) { 
             classificacao = 'Sobrepeso';
         } else {
             classificacao = 'Obesidade';
@@ -217,4 +218,3 @@ if (btnRegra) {
        divResultado.innerHTML = `<p>O valor de <strong>X é ${x.toFixed(2)}</strong></p>`;
    });
 }
-

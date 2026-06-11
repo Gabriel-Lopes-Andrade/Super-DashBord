@@ -8,7 +8,6 @@
 
 html, body {
     height: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -17,7 +16,6 @@ body {
     font-family: sans-serif;
     background-color: #ffffff;
     color: #333333;
-    
 }
 
 /*  MODO NOTURNO */
@@ -87,7 +85,6 @@ header {
     background-color: #888888;
     color: white;
     flex-shrink: 0;
-    
 }
 
 /* Botão modo noturno — fica no canto direito do header */
@@ -99,7 +96,6 @@ header {
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
-   
 }
 
 #btn-modo:hover {
@@ -111,6 +107,7 @@ main {
     display: flex;
     flex-direction: row;
     flex: 1;
+    min-height: 0;
     overflow: hidden;
 }
 
@@ -124,7 +121,8 @@ main section:last-child {
     align-items: center;
     justify-content: center;
     padding: 40px;
-    overflow: auto;
+    overflow-y: auto;
+    height: 100%;
 }
 
 /*  BARRA LATERAL */
@@ -136,7 +134,6 @@ ul {
     padding: 20px;
     height: 100%;
     background-color: #b8b8b8;
-    ;
 }
 
 li a {
@@ -153,7 +150,6 @@ li a {
     font-size: 14px;
     text-align: center;
     padding: 8px;
- 
 }
 
 li a:hover {
@@ -184,7 +180,6 @@ img {
     width: 100%;
     max-width: 480px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-
 }
 
 .card-desafio h2 {
@@ -203,7 +198,6 @@ img {
     font-size: 14px;
     color: #666;
     font-weight: bold;
-
 }
 
 .campo input,
@@ -213,7 +207,6 @@ img {
     border-radius: 6px;
     font-size: 15px;
     width: 100%;
-
 }
 
 .btn-calcular {
@@ -227,7 +220,6 @@ img {
     font-weight: bold;
     cursor: pointer;
     margin-top: 8px;
-    
 }
 
 .btn-calcular:hover {
@@ -243,7 +235,6 @@ img {
     font-size: 16px;
     color: #333;
     min-height: 48px;
-  
 }
 
 /*FOOTERS  */
@@ -255,8 +246,8 @@ footer {
     background-color: #666666;
     color: white;
     flex-shrink: 0;
-
 }
+
 /* === Pego da PokeAPI === */
 /* === Adição para ajustar pro Tablet=== */
 @media (max-width: 768px) {
@@ -284,6 +275,7 @@ footer {
          width: 90%; /* TESTE */
     }
 }
+
 .oculto {
     display: none !important;
 }
